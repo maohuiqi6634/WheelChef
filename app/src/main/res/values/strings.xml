@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">WheelChef</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="opendrawer">Open</string>
+    <string name="closedrawer">Close</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="home_fragment">Home</string>
+    <string name="my_account_fragment">My Account Page</string>
+    <string name="current_order_fragment">Current Order Page</string>
+    <string name="payment_fragment">Payment Page</string>
+    <string name="history_fragment">History Page</string>
+    <string name="title_activity_login">Login</string>
+    <string name="title_activity_register">Register</string>
+</resources>
