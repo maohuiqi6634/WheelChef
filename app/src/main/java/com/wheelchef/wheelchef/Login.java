@@ -33,7 +33,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
     public void onClick(View v) {
         switch(v.getId()){
             case R.id.bLogin:
-                if(etUsername.getText().toString().equals("huiqi") && etPassword.getText().toString().equals("123")) {
+//                if(etUsername.getText().toString().equals("huiqi") && etPassword.getText().toString().equals("123")) {
+                if(true){
                     startActivity(new Intent(this, MainActivity.class));
                 }
                 break;

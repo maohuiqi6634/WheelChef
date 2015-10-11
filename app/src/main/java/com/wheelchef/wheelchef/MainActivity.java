@@ -24,6 +24,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private FragmentTransaction fragmentTransaction;
     private FragmentManager fragmentManager;
 
+    private HomeFragment homeFragment;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +53,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         fragmentManager = getSupportFragmentManager();
 
 
+        homeFragment = new HomeFragment();
+
+
         loadSelection(0);
     }
 
@@ -59,7 +64,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         navList.setItemChecked(i,true);
         switch (i){
             case 0:
-                HomeFragment homeFragment = new HomeFragment();
                 fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.fragmentholder, homeFragment);
                 fragmentTransaction.commit();
@@ -87,6 +91,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 break;
         }
 
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus){
+        homeFragment.setUpMap();
     }
 
     @Override
