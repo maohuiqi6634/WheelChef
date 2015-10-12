@@ -94,11 +94,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
     @Override
-    public void onWindowFocusChanged(boolean hasFocus){
-        homeFragment.setUpMap();
-    }
-
-    @Override
     public void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
         actionBarDrawerToggle.syncState();

@@ -11,6 +11,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,13 +43,10 @@ public class HomeFragment extends Fragment implements LocationListener {
     private static final long MIN_TIME = 400;
     private static final float MIN_DISTANCE = 1000;
     private Button resetCameraBtn;
-    private MapView mapView;
-
+    private SupportMapFragment mapFragment;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-//        setUpMapIfNeeded();
     }
 
     @Override
@@ -63,8 +61,10 @@ public class HomeFragment extends Fragment implements LocationListener {
                 mMap.animateCamera(cameraUpdate);
             }
         });
+        FragmentManager fragmentManager = getChildFragmentManager();
 
-        mapView = (MapView) forReturn.findViewById(R.id.map);
+        mapFragment = (SupportMapFragment) fragmentManager.findFragmentById(R.id.map_fragment);
+        mMap = mapFragment.getMap();
 
         return forReturn;
     }
@@ -72,59 +72,8 @@ public class HomeFragment extends Fragment implements LocationListener {
     @Override
     public void onResume() {
         super.onResume();
-
-//        setUpMapIfNeeded();
+        setUpMap();
     }
-//    @Override
-//    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-//        return inflater.inflate(R.layout.fragment_home,container,false);
-//    }
-//    public void onSearch(View view){
-//        EditText location_tf = (EditText) findViewById(R.id.TFaddress);
-//        String location = location_tf.getText().toString();
-//        List<Address> addressList = null;
-//
-//        if (location != null || location != ""){
-//            Geocoder geocoder = new Geocoder(this);
-//            try {
-//                addressList = geocoder.getFromLocationName(location , 1);
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//
-//            Address address = addressList.get(0);
-//            LatLng latLng = new LatLng(address.getLatitude(),address.getLongitude());
-//            mMap.addMarker(new MarkerOptions().position(latLng).title("Marker"));
-//            mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
-//        }
-//
-//    }
-
-//    private void setUpMapIfNeeded() {
-//        // Do a null check to confirm that we have not already instantiated the map.
-//        if (mMap == null) {
-//            // Try to obtain the map from the SupportMapFragment.
-//            mMap = this
-//                    .getMap();
-//            // Check if we were successful in obtaining the map.
-//            if (mMap != null) {
-//                setUpMap();
-//            }
-//        }
-//    }
-
-//    private void setUpMap() {
-//        /*mMap.addMarker(new MarkerOptions().position(new LatLng(0, 0)).title("Marker"));
-//        mMap.setMyLocationEnabled(true);*/
-////        mMap.addMarker(new MarkerOptions().position(new LatLng(mMap.getMyLocation().getLatitude(), mMap.getMyLocation().getLongitude())).title("I'm Here!"));
-//        mMap.setOnMyLocationChangeListener(new OnMyLocationChangeListener() {
-//        @Override
-//        public void onMyLocationChange(Location location) {
-//            // TODO Auto-generated method stub
-//
-//        }
-//    });
-//}
 
     @Override
     public void onLocationChanged(Location location) {
@@ -153,17 +102,7 @@ public class HomeFragment extends Fragment implements LocationListener {
     }
 
 
-    public void setUpMap(){
-        while(mMap == null){
-            mMap = mapView.getMap();
-        }
-        try {
-            MapsInitializer.initialize(getActivity());
-        }
-        catch (Exception e) {
-            Log.e("HomeFragment", "Have GoogleMap but then error", e);
-            return;
-        }
+    private void setUpMap(){
         mMap.setMyLocationEnabled(true);
         locationManager = (LocationManager) this.getActivity().getSystemService(Context.LOCATION_SERVICE);
         try {

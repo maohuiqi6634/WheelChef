@@ -1,8 +1,45 @@
 <resources>
     <string name="app_name">WheelChef</string>
+    <!--
+    hq
+    TODO: Before you run your application, you need a Google Maps API key.
+
+    To get one, follow this link, follow the directions and press "Create" at the end:
+
+https://console.developers.google.com/flows/enableapi?apiid=maps_android_backend&keyType=CLIENT_SIDE_ANDROID&r=96:63:22:32:41:08:D9:C1:AA:C1:35:82:1F:40:73:B9:4C:7D:C8:00%3Bcom.wheelchef.wheelchef
+
+    You can also add your credentials to an existing key, using this line:
+    96:63:22:32:41:08:D9:C1:AA:C1:35:82:1F:40:73:B9:4C:7D:C8:00;com.wheelchef.wheelchef
+
+    Once you have your key (it starts with "AIza"), replace the "google_maps_key"
+    string in this file.
+    -->
+    <!--<string name="google_maps_key" translatable="false" templateMergeStrategy="preserve">-->
+        <!--AIzaSyBHJXjJlePNfVS9louiyJqn6NxpYCeCUB4-->
+    <!--</string>-->
+
+    <!--
+    yk
+    TODO: Before you run your application, you need a Google Maps API key.
+
+    To get one, follow this link, follow the directions and press "Create" at the end:
+
+    https://console.developers.google.com/flows/enableapi?apiid=maps_android_backend&keyType=CLIENT_SIDE_ANDROID&r=35:90:36:41:7A:52:40:1A:3D:0D:EF:54:6A:4E:B2:02:3A:DD:B8:CB%3Bcom.wheelchef.wheelchef
+
+    You can also add your credentials to an existing key, using this line:
+    35:90:36:41:7A:52:40:1A:3D:0D:EF:54:6A:4E:B2:02:3A:DD:B8:CB;com.wheelchef.wheelchef
+
+    Alternatively, follow the directions here:
+    https://developers.google.com/maps/documentation/android/start#get-key
+
+    Once you have your key (it starts with "AIza"), replace the "google_maps_key"
+    string in this file.
+    -->
     <string name="google_maps_key" translatable="false" templateMergeStrategy="preserve">
-        AIzaSyBHJXjJlePNfVS9louiyJqn6NxpYCeCUB4
+        AIzaSyDz1WvrII0OE4U3HZQ9o5BI5YhlVZGTmMY
     </string>
+
+
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="opendrawer">Open</string>
@@ -17,4 +54,5 @@
     <string name="title_activity_login">Login</string>
     <string name="title_activity_register">Register</string>
     <string name="title_activity_maps">Map</string>
+    <string name="title_activity_maps_activity_lyk">Map</string>
 </resources>
