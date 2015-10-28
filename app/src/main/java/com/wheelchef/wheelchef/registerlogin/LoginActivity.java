@@ -1,4 +1,4 @@
-package com.wheelchef.wheelchef.main;
+package com.wheelchef.wheelchef.registerlogin;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -8,9 +8,9 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.wheelchef.wheelchef.R;
-import com.wheelchef.wheelchef.dbconnection.DBConnector;
+import com.wheelchef.wheelchef.main.MainActivity;
 
-public class Login extends AppCompatActivity implements View.OnClickListener{
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
 
     Button bLogin, bRegisterLink;
     EditText etUsername, etPassword;
@@ -28,24 +28,18 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
 
         bLogin.setOnClickListener(this);
         bRegisterLink.setOnClickListener(this);
-        try {
-            new DBConnector().initialize(this);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     @Override
     public void onClick(View v) {
         switch(v.getId()){
             case R.id.bLogin:
-//                if(etUsername.getText().toString().equals("huiqi") && etPassword.getText().toString().equals("123")) {
                 if(true){
                     startActivity(new Intent(this, MainActivity.class));
                 }
                 break;
             case R.id.bRegisterLink:
-                startActivity(new Intent(this, Register.class));
+                startActivity(new Intent(this, RegisterActivity.class));
                 break;
         }
     }

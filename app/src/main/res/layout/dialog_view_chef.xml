@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@android:color/background_light"
+    android:orientation="vertical"
+    android:layout_width="@dimen/navigation_drawer_width"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal">
+    <LinearLayout
+        android:background="@color/amber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="10dp">
+        <com.pkmmte.view.CircularImageView
+            android:layout_gravity="center_horizontal"
+            android:id = "@+id/chef_photo"
+            android:layout_width="69dp"
+            android:layout_height="69dp"
+            android:src="@mipmap/unknown_person"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            app:border="true"
+            app:border_color="@android:color/white"
+            app:border_width="2dp"
+            app:shadow="false" />
+        <TextView
+            android:id="@+id/chef_name_text"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"/>
+
+    </LinearLayout>
+    <View
+        android:layout_width="@dimen/navigation_drawer_width"
+        android:layout_height="2dp"
+        android:background="@drawable/section_bar"/>
+    <LinearLayout
+        android:background="@color/amber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="10dp">
+
+    <TextView
+        android:id="@+id/chef_description_text"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"/>
+    <com.rey.material.widget.Button
+        style="@style/FlatWaveColorButtonRippleStyle"
+        android:layout_gravity="center_horizontal"
+        android:id = "@+id/view_chef_detail_btn"
+        android:layout_width="@dimen/navigation_drawer_width"
+        android:layout_height="fill_parent"
+        android:text="@string/view_chef_dialog_view_chef_details"
+        app:rd_enable="true"
+        app:rd_rippleType="wave"
+        app:rd_delayClick="afterRelease"/>
+    </LinearLayout>
+</LinearLayout>

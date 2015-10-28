@@ -1,4 +1,4 @@
-package com.wheelchef.wheelchef.main;
+package com.wheelchef.wheelchef.registerlogin;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,7 +10,7 @@ import android.widget.EditText;
 
 import com.wheelchef.wheelchef.R;
 
-public class Register extends AppCompatActivity implements View.OnClickListener {
+public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
 
     Button bRegister;
     EditText etUsername, etPassword, etConfirmPassword;

@@ -53,6 +53,10 @@ https://console.developers.google.com/flows/enableapi?apiid=maps_android_backend
     <string name="history_fragment">History Page</string>
     <string name="title_activity_login">Login</string>
     <string name="title_activity_register">Register</string>
+    <string name="title_activity_viewchefinfo">View Chef Info</string>
     <string name="title_activity_maps">Map</string>
     <string name="title_activity_maps_activity_lyk">Map</string>
+    <string name="view_chef_dialog_view_chef_details">View Chef Details</string>
+    <string name="view_chef_activity_view_chef_distance">Distance: </string>
+    <string name="view_chef_activity_view_chef_time">Delivery Time: </string>
 </resources>

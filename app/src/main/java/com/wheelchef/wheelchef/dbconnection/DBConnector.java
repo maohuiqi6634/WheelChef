@@ -5,61 +5,49 @@ package com.wheelchef.wheelchef.dbconnection;
  */
 
 import android.app.Activity;
-import android.os.AsyncTask;
-import android.util.Log;
-import android.widget.Toast;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.Date;
+import org.ksoap2.SoapEnvelope;
+import org.ksoap2.serialization.SoapObject;
+import org.ksoap2.serialization.SoapPrimitive;
+import org.ksoap2.serialization.SoapSerializationEnvelope;
+import org.ksoap2.transport.HttpTransportSE;
+
 
 public class DBConnector {
-    private Connection connect = null;
-    private Statement statement = null;
-    private PreparedStatement preparedStatement = null;
-    private ResultSet resultSet = null;
 
-    public void initialize(Activity activity) throws Exception {
-        try{
-            if (connect == null){
-                new TaskInitialize(activity).execute();
+    private static final String SOAP_ACTION = "http://ws.android.com/sayHello";
+    private static final String METHOD_NAME = "sayHello";
+    private static final String NAMESPACE = "http://ws.android.com/";
+    private static final String URL = "http://175.157.229.119:8080/AndroidWSTest/services/PrintMsg?wsdl";
+
+    private Activity activity;
+
+    public DBConnector(final Activity activity) {
+        this.activity = activity;
+
+        Thread networkThread = new Thread() {
+            @Override
+            public void run() {
+                try {
+                    SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
+                    SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+                    envelope.setOutputSoapObject(request);
+
+                    HttpTransportSE ht = new HttpTransportSE(URL);
+                    ht.call(SOAP_ACTION, envelope);
+                    final  SoapPrimitive response = (SoapPrimitive)envelope.getResponse();
+                    final String str = response.toString();
+
+                    activity.runOnUiThread(new Runnable() {
+                        public void run() {
+                        }
+                    });
+                }
+                catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
-        }catch (Exception e) {
-            throw e;
-        }
-    }
-    private class TaskInitialize extends AsyncTask<Void, Void, Void> {
-        private Activity activity;
-
-        public TaskInitialize(Activity activity){
-            this.activity = activity;
-        }
-
-        @Override
-        protected Void doInBackground(Void... params) {
-            try{
-                Class.forName("com.mysql.jdbc.Driver");
-                // Setup the connection with the DB
-                connect = DriverManager
-                        .getConnection("jdbc:mysql://23.229.175.161:3306/wheelchefdb_test?"
-                                + "user=wcDBT3stAdm1n&password=wcDBT3st@dm1n");
-                Toast.makeText(activity.getApplicationContext(),
-                        "Connection to database set up!", Toast.LENGTH_LONG).show();
-            }catch (Exception e) {
-                Log.d("mmmmmmmmmmmmmmmmmmmm","Initializing connection to db.");
-            }
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void result) {
-            super.onPostExecute(result);
-        }
-
-
+        };
+        networkThread.start();
     }
 }
