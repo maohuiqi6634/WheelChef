@@ -20,6 +20,7 @@ android {
             maven { url 'https://oss.sonatype.org/content/repositories/ksoap2-android-releases/' }
         }
     }
+    useLibrary 'org.apache.http.legacy'
 }
 
 dependencies {
@@ -30,4 +31,5 @@ dependencies {
     compile 'com.google.code.ksoap2-android:ksoap2-android:3.5.0'
     compile 'com.github.rey5137:material:1.2.1'
     compile 'com.pkmmte.view:circularimageview:1.1'
+    //compile group: 'org.apache.httpcomponents' , name: 'httpclient-android' , version: '4.3.5.1'
 }
