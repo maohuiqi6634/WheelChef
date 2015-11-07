@@ -22,6 +22,7 @@ public class ViewChefInfoDialog extends Dialog {
     private String chefTime;
     private String chefDist;
     private Button viewChefDetailBtn;
+    private TextView chefCuisineCatText;
     private TextView chefNameText;
     private TextView chefDescText;
     private ImageView chefPhoto;
@@ -33,6 +34,7 @@ public class ViewChefInfoDialog extends Dialog {
         this.chefDist = chefDist;
         this.setContentView(R.layout.dialog_view_chef);
         viewChefDetailBtn = (Button) findViewById(R.id.view_chef_detail_btn);
+        chefCuisineCatText = (TextView) findViewById(R.id.chef_cuisine_category);
         chefNameText = (TextView) findViewById(R.id.chef_name_text);
         chefDescText = (TextView) findViewById(R.id.chef_description_text);
         chefPhoto = (ImageView) findViewById(R.id.chef_photo);
@@ -52,6 +54,8 @@ public class ViewChefInfoDialog extends Dialog {
                 ViewChefInfoDialog.this.dismissImmediately();
             }
         });
+
+        chefCuisineCatText.setText("Chinese Cuisine");
         chefNameText.setText(chefName);
         chefDescText.setText(chefName + " is a good chef! ");
     }
@@ -60,6 +64,7 @@ public class ViewChefInfoDialog extends Dialog {
             if(chefPhoto==null)
                 Log.d("ViewChefInfoDialog","chefPhoto is null");
             chefPhoto.setImageResource(R.mipmap.ic_lyk);
+
         }
     }
 }

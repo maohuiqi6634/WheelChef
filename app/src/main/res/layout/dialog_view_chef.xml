@@ -13,6 +13,11 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_margin="10dp">
+        <TextView
+            android:id="@+id/chef_cuisine_category"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"/>
         <com.pkmmte.view.CircularImageView
             android:layout_gravity="center_horizontal"
             android:id = "@+id/chef_photo"
