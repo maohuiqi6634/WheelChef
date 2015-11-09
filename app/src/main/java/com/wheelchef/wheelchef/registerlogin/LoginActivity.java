@@ -12,7 +12,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.wheelchef.wheelchef.R;
-import com.wheelchef.wheelchef.jsonutils.JSONParser;
+import com.wheelchef.wheelchef.utils.ConnectionParams;
+import com.wheelchef.wheelchef.utils.PrefUtil;
+import com.wheelchef.wheelchef.utils.JSONParser;
 import com.wheelchef.wheelchef.main.MainActivity;
 
 import org.apache.http.NameValuePair;
@@ -30,8 +32,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private String username, password;
 
     // url to get all products list
-    private static final String URL_CUSTOMER_LOGIN = "http://10.27.53.225/wheelchef/db_customer_login.php";
     private static final String TAG = "LoginActivity";
+
+    public static final String NEEDVERIFY = "need_verify";
     // JSON Node names
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_MSG = "message";
@@ -44,6 +47,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        boolean loggedin = PrefUtil.getBooleanPreference(SessionManager.LOGGED_IN,this);
+        if(loggedin){
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            intent.putExtra(NEEDVERIFY,true);
+            startActivity(intent);
+            finish();
+        }
         setContentView(R.layout.activity_login);
 
         etUsername = (EditText) findViewById(R.id.etUsername);
@@ -69,6 +79,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
     }
 
+
+
     private class LoginTask extends AsyncTask<String, String, String> {
         int success = 0;
         String msg = "";
@@ -93,7 +105,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             params.add(new BasicNameValuePair("username", username));
             params.add(new BasicNameValuePair("password", password));
             // getting JSON string from URL
-            JSONObject json = jParser.makeHttpRequest(URL_CUSTOMER_LOGIN, "POST", params);
+            JSONObject json = jParser.makeHttpRequest(ConnectionParams.URL_CUSTOMER_LOGIN, "POST", params);
             Log.d(TAG,"with the username: "+username);
             Log.d(TAG,"with the password: "+password);
             Log.d(TAG,"json received is: "+json.toString());
@@ -117,6 +129,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             // dismiss the dialog after getting all products
             pDialog.dismiss();
             if (success == 1) {
+                SessionManager.login(LoginActivity.this,username,password);
                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
                 Log.d(TAG, "login succeed!");
                 Toast.makeText(LoginActivity.this, msg, Toast.LENGTH_LONG).show();
